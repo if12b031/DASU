@@ -1,21 +1,28 @@
 package application;
 	
+import java.io.File;
+
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
 
 public class Main extends Application {
 	
-	public static String path = "C:\\Documents and Settings\\Georg\\Desktop";
+	public static String path = "C:\\FH-Technikum-wien\\4.Semester\\Datensicherheit2";
 	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			BorderPane root = new BorderPane();
-			Scene scene = new Scene(root,400,400);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			Parent root = FXMLLoader.load(getClass().getResource("fxml_ui.fxml"));
+			Scene scene = new Scene(root,600,400);			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {
