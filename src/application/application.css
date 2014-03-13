@@ -1,3 +1,9 @@
 .root {
      -fx-background-image: url("../images/dunkel.png");
 }
+
+.label{
+	-fx-font: 1.5em "Serif";
+    -fx-text-fill: white;
+    -fx-padding: 0 10 0 0;
+}
