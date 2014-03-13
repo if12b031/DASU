@@ -32,7 +32,7 @@ public class CryptLogic {
 			System.out.println( "Plain: " + new String(plainText) );
 			
 			// Encrypt the plain text using the public key
-			cipher.init(Cipher.ENCRYPT_MODE, myKeys.getKeyPair().getPublic());
+			cipher.init(Cipher.ENCRYPT_MODE, myKeys.getPublicKey());
 			cipherText = cipher.doFinal(plainText);
 		    
 			System.out.println( "Finish encryption: " );
@@ -58,7 +58,7 @@ public class CryptLogic {
 		    fis.close();
 			
 		    // Decrypt the text using the private key
-		 	cipher.init(Cipher.DECRYPT_MODE, myKeys.getKeyPair().getPrivate());
+		 	cipher.init(Cipher.DECRYPT_MODE, myKeys.getPrivateKey());
 			decryptedText = cipher.doFinal(decryptedText);
 			
 			System.out.println( "Finish decryption: " );

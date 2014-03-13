@@ -39,9 +39,11 @@ public class Main extends Application {
 			myKeys.SaveKeyPair(path);
 			
 			myKeys.LoadPublicKey(path);	 
-			System.out.println("Loaded Key Pair");
+			System.out.println("Loaded Public Pair");
 			
-			myKeys.LoadKeyPair(path);
+			myKeys.LoadPrivateKey(path);			
+			System.out.println("Loaded Private Pair");
+			
 			myKeys.dumpKeys();
 			
 			myCryptLogic.encrypt(plaintextFilePath, myKeys);
