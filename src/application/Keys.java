@@ -6,8 +6,8 @@ import java.security.spec.*;
  
 public class Keys {
 	
-	private KeyPair keyPair;
-	private PublicKey externPublicKey;
+	private PublicKey publicKey;
+	private PrivateKey privateKey;
 	private KeyFactory keyFactory;
 	private KeyPairGenerator keyGen;
 	
@@ -21,23 +21,24 @@ public class Keys {
 	}
 	public void generateKeyPair() {		
 		// Define length of keys
+		// And set Private and Public Key
+		KeyPair keyPair;
 		keyGen.initialize(1024);
 		KeyPair generatedKeyPair = keyGen.genKeyPair();
 		keyPair = generatedKeyPair;
+		this.setPublicKey(keyPair.getPublic());
+		this.setPrivateKey(keyPair.getPrivate());
 	}
 	 
 	public void SaveKeyPair(String path) throws IOException {		
-		PrivateKey privateKey = keyPair.getPrivate();
-		PublicKey publicKey = keyPair.getPublic();
-		 
-		// Store Public Key.
+		// Store Public Key
 		X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(
 			publicKey.getEncoded());
 		FileOutputStream fos = new FileOutputStream(path + "/public.key");
 		fos.write(x509EncodedKeySpec.getEncoded());
 		fos.close();
 		 
-		// Store Private Key.
+		// Store Private Key
 		PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(
 				privateKey.getEncoded());
 		fos = new FileOutputStream(path + "/private.key");
@@ -47,7 +48,7 @@ public class Keys {
 		 
 	public void LoadPublicKey(String path)
 			throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {		
-		// Read extern Public Key.
+		// Read extern Public Key
 		File filePublicKey = new File(path + "/public.key");
 		FileInputStream fis = new FileInputStream(path + "/public.key");
 		byte[] encodedPublicKey = new byte[(int) filePublicKey.length()];
@@ -59,46 +60,47 @@ public class Keys {
 										encodedPublicKey);
 		PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
 		 
-		externPublicKey = publicKey;
+		this.setPublicKey(publicKey);
 	}
 	
-	public void LoadKeyPair(String path)
+	public void LoadPrivateKey(String path)
 			throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {		
+		/*
 		// Read Public Key.
 		File filePublicKey = new File(path + "/public.key");
 		FileInputStream fis = new FileInputStream(path + "/public.key");
 		byte[] encodedPublicKey = new byte[(int) filePublicKey.length()];
 		fis.read(encodedPublicKey);
 		fis.close();
+		*/
 		 
-		// Read Private Key.
+		// Read Private Key
 		File filePrivateKey = new File(path + "/private.key");
-		fis = new FileInputStream(path + "/private.key");
+		FileInputStream fis = new FileInputStream(path + "/private.key");
 		byte[] encodedPrivateKey = new byte[(int) filePrivateKey.length()];
 		fis.read(encodedPrivateKey);
 		fis.close();
 		 
-		// Generate KeyPair.
+		// Generate KeyPair
+		/*
 		X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(
 				encodedPublicKey);
 		PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
-		 
+		 */
+		
 		PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(
 				encodedPrivateKey);
 		PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
 	 
-		keyPair = new KeyPair(publicKey, privateKey);
+		this.setPrivateKey(privateKey);
 	}
 	
 	public void dumpKeys() {
-		PublicKey pub = keyPair.getPublic();
+		PublicKey pub = publicKey;
 		System.out.println("Public Key: " + getHexString(pub.getEncoded()));
 		 
-		PrivateKey priv = keyPair.getPrivate();
+		PrivateKey priv = privateKey;
 		System.out.println("Private Key: " + getHexString(priv.getEncoded()));
-		
-		PublicKey extPub = externPublicKey;
-		System.out.println("extern Public Key: " + getHexString(extPub.getEncoded()));
 	}
 	 
 	private String getHexString(byte[] b) {
@@ -109,19 +111,19 @@ public class Keys {
 		return result;
 	}
 
-	public KeyPair getKeyPair() {
-		return keyPair;
+	public PublicKey getPublicKey() {
+		return publicKey;
 	}
-
-	public void setKeyPair(KeyPair keyPair) {
-		this.keyPair = keyPair;
+	
+	public void setPublicKey(PublicKey publicKey) {
+		this.publicKey = publicKey;
 	}
-
-	public PublicKey getExternPublicKey() {
-		return externPublicKey;
+	
+	public PrivateKey getPrivateKey() {
+		return privateKey;
 	}
-
-	public void setExternPublicKey(PublicKey externPublicKey) {
-		this.externPublicKey = externPublicKey;
+	
+	public void setPrivateKey(PrivateKey privateKey) {
+		this.privateKey = privateKey;
 	}
 }
