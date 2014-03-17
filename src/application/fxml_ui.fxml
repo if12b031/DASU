@@ -8,41 +8,23 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.text.*?>
 
-<GridPane hgap="5.0" minHeight="-1.0" minWidth="-1.0" prefHeight="372.0" prefWidth="550.0" vgap="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.MainController">
+<GridPane alignment="CENTER" hgap="5.0" minHeight="-1.0" minWidth="-1.0" prefHeight="372.0" prefWidth="550.0" vgap="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.MainController">
   <children>
-    <Button id="buttonPath" fx:id="buttonFileDecrypt" mnemonicParsing="false" text="... Browse xt File" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <Button id="buttonPublicPath" fx:id="buttonGenPair" mnemonicParsing="false" text="... Browse Directory" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-    <Label fx:id="labelPath" alignment="CENTER_LEFT" contentDisplay="LEFT" minWidth="-1.0" prefWidth="330.0" text=".txt file to decrypt :" textFill="BLACK" GridPane.columnIndex="0" GridPane.rowIndex="1">
-      <GridPane.margin>
-        <Insets left="20.0" fx:id="x3" />
-      </GridPane.margin>
-    </Label>
-    <Label id="labelPublicPath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Path to save generated keys :" textFill="BLACK" GridPane.columnIndex="0" GridPane.margin="$x3" GridPane.rowIndex="3" />
     <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <children>
         <Button id="buttonFilePath" fx:id="buttonFileEncrypt" mnemonicParsing="false" text="... Browse .txt-File" />
         <Button id="buttonFilePath" fx:id="buttonPKEncrypt" mnemonicParsing="false" text="... Browse Public Key" />
       </children>
     </VBox>
-    <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="4">
+    <VBox alignment="CENTER" prefHeight="82.0" prefWidth="300.0" snapToPixel="true" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
       <children>
-        <Button id="buttonFilePath" fx:id="buttonLoadPrivate" mnemonicParsing="false" text="... Browse Private Key" />
-        <Button id="buttonFilePath" fx:id="buttonLoadPublic" mnemonicParsing="false" text="... Browse Public Key" />
-      </children>
-      <padding>
-        <Insets fx:id="x1" />
-      </padding>
-    </VBox>
-    <VBox alignment="BOTTOM_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
-      <children>
-        <Label fx:id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text=".txt file to encrypt :" textFill="BLACK" VBox.margin="$x3" />
+        <Label fx:id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text=".txt file to encrypt :" textFill="BLACK">
+          <VBox.margin>
+            <Insets left="20.0" fx:id="x3" />
+          </VBox.margin>
+        </Label>
         <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Public Key for encryption :" textFill="BLACK" VBox.margin="$x3" />
-      </children>
-    </VBox>
-    <VBox alignment="BOTTOM_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
-      <children>
-        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Private Key to load :" textFill="BLACK" VBox.margin="$x3" />
-        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Public Key to load :" textFill="BLACK" VBox.margin="$x3" />
       </children>
     </VBox>
     <Button fx:id="decrypt" mnemonicParsing="false" onAction="#decrypt" text="Decrypt" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -51,13 +33,40 @@
       </font>
     </Button>
     <Button fx:id="encrypt" font="$x2" mnemonicParsing="false" onAction="#encrypt" text="Encrypt" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-    <Button fx:id="loadKeyPair" font="$x2" mnemonicParsing="false" onAction="#loadKeyPair" text="Load Key Pair" GridPane.columnIndex="2" GridPane.rowIndex="4" />
     <Button fx:id="generateKeyPair" font="$x2" mnemonicParsing="false" onAction="#genKeyPair" text="Generate Key Pair" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <Text fill="WHITE" scaleX="1.1540195341848234" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AymCrypt" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="0">
+    <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="1">
+      <children>
+        <Button id="buttonPath" fx:id="buttonFileDecrypt" mnemonicParsing="false" text="... Browse .txt File" />
+        <Button id="buttonFilePath" fx:id="buttonLoadPrivate" mnemonicParsing="false" text="... Browse Private Key" />
+      </children>
+      <padding>
+        <Insets fx:id="x1" />
+      </padding>
+    </VBox>
+    <VBox alignment="CENTER" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <children>
+        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text=".txt file to encrypt:" textFill="BLACK" VBox.margin="$x3" />
+        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Private Key to load :" textFill="BLACK">
+          <VBox.margin>
+            <Insets left="20.0" fx:id="x3" />
+          </VBox.margin>
+        </Label>
+      </children>
+    </VBox>
+    <Text fill="WHITE" scaleX="0.9008114079151084" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AymCrypt" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <font>
-        <Font name="System Bold" size="55.0" />
+        <Font name="System Bold" size="50.0" />
       </font>
     </Text>
+    <VBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="300.0" snapToPixel="true" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+      <children>
+        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Path to save generated Keys:" textFill="BLACK">
+          <VBox.margin>
+            <Insets left="20.0" fx:id="x3" />
+          </VBox.margin>
+        </Label>
+      </children>
+    </VBox>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" prefWidth="250.0" />
@@ -66,10 +75,9 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="27.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
     <RowConstraints maxHeight="27.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
   </rowConstraints>
   <stylesheets>
     <URL value="@application.css" />

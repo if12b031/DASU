@@ -165,25 +165,5 @@ public class MainController implements Initializable {
 		        	  buttonLoadPrivate.setText(file.getPath());
 		          }
 		 });
-		
-		buttonLoadPublic.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-
-			public void handle(ActionEvent event) {
-
-				 FileChooser fileChooser = new FileChooser();	
-				 fileChooser.setTitle("Select Public-Key");
-				 //Set extension filter
-		         FileChooser.ExtensionFilter extFilter =
-		         new FileChooser.ExtensionFilter("*", "*");
-		         fileChooser.getExtensionFilters().add(extFilter);
-		          //Show open file dialog
-		          File file = fileChooser.showOpenDialog(null);
-		          if(file!=null)
-		        	  
-		        	  buttonLoadPublic.setText(file.getPath());
-		          }
-		 });
-		
 	}
 }

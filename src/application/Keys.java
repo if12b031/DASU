@@ -65,14 +65,6 @@ public class Keys {
 	
 	public void LoadPrivateKey(String path)
 			throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {		
-		/*
-		// Read Public Key.
-		File filePublicKey = new File(path + "/public.key");
-		FileInputStream fis = new FileInputStream(path + "/public.key");
-		byte[] encodedPublicKey = new byte[(int) filePublicKey.length()];
-		fis.read(encodedPublicKey);
-		fis.close();
-		*/
 		 
 		// Read Private Key
 		File filePrivateKey = new File(path + "/private.key");
@@ -80,35 +72,12 @@ public class Keys {
 		byte[] encodedPrivateKey = new byte[(int) filePrivateKey.length()];
 		fis.read(encodedPrivateKey);
 		fis.close();
-		 
-		// Generate KeyPair
-		/*
-		X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(
-				encodedPublicKey);
-		PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
-		 */
 		
 		PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(
 				encodedPrivateKey);
 		PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
 	 
 		this.setPrivateKey(privateKey);
-	}
-	
-	public void dumpKeys() {
-		PublicKey pub = publicKey;
-		System.out.println("Public Key: " + getHexString(pub.getEncoded()));
-		 
-		PrivateKey priv = privateKey;
-		System.out.println("Private Key: " + getHexString(priv.getEncoded()));
-	}
-	 
-	private String getHexString(byte[] b) {
-		String result = "";
-		for (int i = 0; i < b.length; i++) {
-			result += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
-		}
-		return result;
 	}
 
 	public PublicKey getPublicKey() {

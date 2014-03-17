@@ -44,8 +44,6 @@ public class Main extends Application {
 			myKeys.LoadPrivateKey(path);			
 			System.out.println("Loaded Private Pair");
 			
-			myKeys.dumpKeys();
-			
 			myCryptLogic.encrypt(plaintextFilePath, myKeys);
 			myCryptLogic.decrypt(encryptedtextFilePath, myKeys);
 			
