@@ -1,5 +1,6 @@
 package application;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.security.NoSuchAlgorithmException;
@@ -23,7 +24,8 @@ public class CryptLogic {
 	}
 	
 	public void encrypt(String inputPath, Keys myKeys) {
-		byte[] cipherText = null;
+		long fileLength= new File(inputPath).length();
+		byte[] cipherText = new byte[(int)fileLength];
 		try {
 			FileInputStream fis = new FileInputStream(inputPath);
 			byte[] plainText = new byte[fis.available()];
@@ -48,11 +50,12 @@ public class CryptLogic {
 		}
 	}
 	
-	public void decrypt(String path, Keys myKeys) {
-		byte[] decryptedText = null;
+	public void decrypt(String inputPath, Keys myKeys) {
+		long fileLength= new File(inputPath).length();
+		byte[] decryptedText = new byte[(int)fileLength];
 		try {						
 			// Read encrypted text from file
-			FileInputStream fis = new FileInputStream(path);
+			FileInputStream fis = new FileInputStream(inputPath);
 		    decryptedText = new byte[fis.available()];
 		    fis.read(decryptedText);
 		    fis.close();

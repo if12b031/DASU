@@ -53,7 +53,7 @@
         </Label>
       </children>
     </VBox>
-    <Text fill="WHITE" scaleX="0.9008114079151084" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AymCrypt" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
+    <Text fill="WHITE" scaleX="0.9008114079151084" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AsymCrypt" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
       <font>
         <Font name="System Bold" size="50.0" />
       </font>
