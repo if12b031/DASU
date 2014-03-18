@@ -29,19 +29,19 @@ public class CryptLogic {
 			byte[] plainText = new byte[fis.available()];
 		    fis.read(plainText);
 		    fis.close();
-			System.out.println( "Plain: " + new String(plainText) );
 			
 			// Encrypt the plain text using the public key
 			cipher.init(Cipher.ENCRYPT_MODE, myKeys.getPublicKey());
 			cipherText = cipher.doFinal(plainText);
 		    
-			System.out.println( "Finish encryption: " );
-		    System.out.println( new String(cipherText) );
-		    
+			System.out.println( "Finish encryption. " );
+			
 		    // Write encrypted text to file
-		    FileOutputStream fs = new FileOutputStream(Main.path + "/encryptedText.txt");
+		    //cut inputPath into 2 pieces 1 = path, 2 = endung und dann added man einfach _encrypted dazwischen fertig
+		    FileOutputStream fs = new FileOutputStream(myKeys.getSavingPath() + "/encryptedText.txt");
 		    fs.write(cipherText);
 		    fs.close();
+		    System.out.println( "Saved in : " + myKeys.getSavingPath() + "/encryptedText.txt" );
 
 		} catch (Exception e) {
 		    e.printStackTrace();
@@ -56,18 +56,17 @@ public class CryptLogic {
 		    decryptedText = new byte[fis.available()];
 		    fis.read(decryptedText);
 		    fis.close();
-			
 		    // Decrypt the text using the private key
 		 	cipher.init(Cipher.DECRYPT_MODE, myKeys.getPrivateKey());
 			decryptedText = cipher.doFinal(decryptedText);
 			
 			System.out.println( "Finish decryption: " );
-			System.out.println( new String(decryptedText) );
 			
 			// Write decrypted text to file
-		    FileOutputStream fs = new FileOutputStream(Main.path + "/decryptedText.txt");
+		    FileOutputStream fs = new FileOutputStream(myKeys.getSavingPath() + "/decryptedText.txt");
 		    fs.write(decryptedText);
 		    fs.close();
+		    System.out.println( "Saved in : " + myKeys.getSavingPath() + "/decryptedText.txt" );
 			
 	    } catch (Exception ex) {
 	    	ex.printStackTrace();

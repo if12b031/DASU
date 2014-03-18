@@ -10,6 +10,7 @@ public class Keys {
 	private PrivateKey privateKey;
 	private KeyFactory keyFactory;
 	private KeyPairGenerator keyGen;
+	private String savingPath;
 	
 	public Keys() {
 		try {
@@ -29,7 +30,9 @@ public class Keys {
 		this.setPublicKey(keyPair.getPublic());
 		this.setPrivateKey(keyPair.getPrivate());
 	}
-	 
+	
+	
+	//diese funktion umschreiben auf savePublicKey und savePrivateKey 
 	public void SaveKeyPair(String path) throws IOException {		
 		// Store Public Key
 		X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(
@@ -49,8 +52,8 @@ public class Keys {
 	public void LoadPublicKey(String path)
 			throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {		
 		// Read extern Public Key
-		File filePublicKey = new File(path + "/public.key");
-		FileInputStream fis = new FileInputStream(path + "/public.key");
+		File filePublicKey = new File(path);
+		FileInputStream fis = new FileInputStream(path);
 		byte[] encodedPublicKey = new byte[(int) filePublicKey.length()];
 		fis.read(encodedPublicKey);
 		fis.close();
@@ -67,8 +70,8 @@ public class Keys {
 			throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {		
 		 
 		// Read Private Key
-		File filePrivateKey = new File(path + "/private.key");
-		FileInputStream fis = new FileInputStream(path + "/private.key");
+		File filePrivateKey = new File(path);
+		FileInputStream fis = new FileInputStream(path);
 		byte[] encodedPrivateKey = new byte[(int) filePrivateKey.length()];
 		fis.read(encodedPrivateKey);
 		fis.close();
@@ -94,5 +97,11 @@ public class Keys {
 	
 	public void setPrivateKey(PrivateKey privateKey) {
 		this.privateKey = privateKey;
+	}
+	public String getSavingPath() {
+		return savingPath;
+	}
+	public void setSavingPath(String savingPath) {
+		this.savingPath = savingPath;
 	}
 }

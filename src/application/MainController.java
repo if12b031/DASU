@@ -1,7 +1,10 @@
 package application;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -20,6 +23,8 @@ public class MainController implements Initializable {
 	@FXML private Button buttonPKEncrypt;
 	@FXML private Button buttonLoadPrivate;
 	@FXML private Button buttonLoadPublic;
+	@FXML private Button buttonBrowseSavePath;
+	@FXML private Button buttonSavePath;
 	@FXML private Button decrypt;
 	@FXML private Button encrypt;
 	@FXML private Button loadKeyPair;
@@ -32,11 +37,17 @@ public class MainController implements Initializable {
 	@FXML
 	public void decrypt(){
 		
-		String fileWithPath;
+		String fileWithPath, privateKeyWithPath;
 		fileWithPath = buttonFileDecrypt.getText();
-		System.out.println("decrypt "+fileWithPath);
-		
-		
+		privateKeyWithPath = buttonLoadPrivate.getText();
+		try {
+			myKeys.LoadPrivateKey(privateKeyWithPath);
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException
+				| IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		myCryptLogic.decrypt(fileWithPath, myKeys);		
 	}
 	
 	@FXML
@@ -46,7 +57,15 @@ public class MainController implements Initializable {
 		
 		fileWithPath = buttonFileEncrypt.getText();
 		publicKeyPath = buttonPKEncrypt.getText();
-		System.out.println("encrypt "+fileWithPath+" with "+publicKeyPath);
+		
+		try {
+			myKeys.LoadPublicKey(publicKeyPath);
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException
+				| IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		myCryptLogic.encrypt(fileWithPath, myKeys);
 	}
 	
 	@FXML
@@ -56,19 +75,26 @@ public class MainController implements Initializable {
 		
 		savingPath = buttonGenPair.getText();
 		
+		myKeys.generateKeyPair();
+		try {
+			myKeys.SaveKeyPair(savingPath);
+		} catch (IOException e) {
+			System.out.println(savingPath+" is not a valid path!");
+		}
+		
 		System.out.println("generate Key-Pair in "+savingPath);
 	}
 	
 	@FXML
-	public void loadKeyPair(){
-		String publicKeyPath;
-		String privateKeyPath;
+	public void savePath(){
 		
-		publicKeyPath = buttonLoadPublic.getText();
-		privateKeyPath = buttonLoadPrivate.getText();
+		String savingPath;
 		
-		System.out.println("load public Key from "+publicKeyPath);
-		System.out.println("load private Key from "+privateKeyPath);	
+		savingPath = buttonBrowseSavePath.getText();
+		
+		myKeys.setSavingPath(savingPath);
+		
+		System.out.println("general Path = "+savingPath);
 	}
 	
 	
@@ -98,12 +124,27 @@ public class MainController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 DirectoryChooser directoryChooser = new DirectoryChooser();
-                directoryChooser.setTitle("Selcet Directory");
+                directoryChooser.setTitle("Select Directory");
                 //Show open file dialog
                 File file = directoryChooser.showDialog(null);
                if(file!=null){
             	   
                     buttonGenPair.setText(file.getPath());
+               }
+            }
+
+});
+		
+		buttonBrowseSavePath.setOnAction(new EventHandler<ActionEvent>() {//directory search
+            @Override
+            public void handle(ActionEvent event) {
+                DirectoryChooser directoryChooser = new DirectoryChooser();
+                directoryChooser.setTitle("Select Directory");
+                //Show open file dialog
+                File file = directoryChooser.showDialog(null);
+               if(file!=null){
+            	   
+                    buttonBrowseSavePath.setText(file.getPath());
                }
             }
 

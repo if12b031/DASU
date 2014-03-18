@@ -2,8 +2,14 @@
      -fx-background-image: url("../images/dunkel.png");
 }
 
+#redFont{
+	-fx-text-fill: red;
+	-fx-font: 1.3em "Calibri";
+}
+
 .label{
 	-fx-font: 1.5em "Calibri";
     -fx-text-fill: white;
     -fx-padding: 0 10 0 0;
 }
+

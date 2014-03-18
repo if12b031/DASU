@@ -9,8 +9,6 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	
-	public static String path = "C:\\FH-Technikum-wien\\4.Semester\\Datensicherheit2";
-	
 	@Override
 	public void start(Stage primaryStage) {
 		try {
@@ -24,32 +22,6 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		launch(args);		
-		
-		Keys myKeys = new Keys();
-		CryptLogic myCryptLogic = new CryptLogic();
-		
-		try {
-			String encryptedtextFilePath = "C:\\Documents and Settings\\Georg\\Desktop/encryptedText.txt";
-			String plaintextFilePath = "C:\\Documents and Settings\\Georg\\Desktop/plainText.txt";
-			
-			myKeys.generateKeyPair();			
-			System.out.println("Generated Key Pair");
-			
-			myKeys.SaveKeyPair(path);
-			
-			myKeys.LoadPublicKey(path);	 
-			System.out.println("Loaded Public Pair");
-			
-			myKeys.LoadPrivateKey(path);			
-			System.out.println("Loaded Private Pair");
-			
-			myCryptLogic.encrypt(plaintextFilePath, myKeys);
-			myCryptLogic.decrypt(encryptedtextFilePath, myKeys);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
+		launch(args);
 	}
 }
