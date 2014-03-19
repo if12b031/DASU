@@ -10,7 +10,7 @@
 
 <GridPane alignment="CENTER" hgap="5.0" minHeight="-1.0" minWidth="-1.0" prefHeight="372.0" prefWidth="550.0" vgap="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="application.MainController">
   <children>
-    <Button id="buttonPublicPath" fx:id="buttonGenPair" mnemonicParsing="false" text="... Browse Directory" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+    <Button id="buttonPublicPath" fx:id="buttonGenPair" mnemonicParsing="false" text="... Browse Directory" GridPane.columnIndex="1" GridPane.rowIndex="2" />
     <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
       <children>
         <Button id="buttonFilePath" fx:id="buttonFileEncrypt" mnemonicParsing="false" text="... Browse .txt-File" />
@@ -27,14 +27,14 @@
         <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Public Key for encryption :" textFill="BLACK" VBox.margin="$x3" />
       </children>
     </VBox>
-    <Button fx:id="decrypt" mnemonicParsing="false" onAction="#decrypt" text="Decrypt" GridPane.columnIndex="2" GridPane.rowIndex="2">
+    <Button fx:id="decrypt" mnemonicParsing="false" onAction="#decrypt" text="Decrypt" GridPane.columnIndex="2" GridPane.rowIndex="4">
       <font>
         <Font name="System Bold" size="15.0" fx:id="x2" />
       </font>
     </Button>
     <Button fx:id="encrypt" font="$x2" mnemonicParsing="false" onAction="#encrypt" text="Encrypt" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-    <Button fx:id="generateKeyPair" font="$x2" mnemonicParsing="false" onAction="#genKeyPair" text="Generate Key Pair" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-    <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="2">
+    <Button fx:id="generateKeyPair" font="$x2" mnemonicParsing="false" onAction="#genKeyPair" text="Generate Key Pair" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+    <VBox alignment="CENTER_LEFT" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="4">
       <children>
         <Button id="buttonPath" fx:id="buttonFileDecrypt" mnemonicParsing="false" text="... Browse .txt File" />
         <Button id="buttonFilePath" fx:id="buttonLoadPrivate" mnemonicParsing="false" text="... Browse Private Key" />
@@ -43,10 +43,10 @@
         <Insets fx:id="x1" />
       </padding>
     </VBox>
-    <VBox alignment="CENTER" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+    <VBox alignment="CENTER" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
       <children>
-        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text=".txt file to encrypt:" textFill="BLACK" VBox.margin="$x3" />
-        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Private Key to load :" textFill="BLACK">
+        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text=".txt file to decrypt:" textFill="BLACK" VBox.margin="$x3" />
+        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Private Key for decryption:" textFill="BLACK">
           <VBox.margin>
             <Insets left="20.0" fx:id="x3" />
           </VBox.margin>
@@ -58,7 +58,7 @@
         <Font name="System Bold" size="50.0" />
       </font>
     </Text>
-    <VBox alignment="TOP_CENTER" prefHeight="82.0" prefWidth="300.0" snapToPixel="true" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+    <VBox alignment="CENTER" prefHeight="82.0" prefWidth="300.0" snapToPixel="true" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
       <children>
         <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Path to save generated Keys:" textFill="BLACK">
           <VBox.margin>
@@ -67,21 +67,29 @@
         </Label>
       </children>
     </VBox>
-    <Label id="redFont" text="First of all type in a Saving-Path once" GridPane.columnIndex="0" GridPane.rowIndex="1" />
     <Button id="buttonPublicPath" fx:id="buttonBrowseSavePath" mnemonicParsing="false" text="... Browse Directory" GridPane.columnIndex="1" GridPane.rowIndex="1" />
     <Button id="decrypt" fx:id="buttonSavePath" font="$x2" mnemonicParsing="false" onAction="#savePath" text="Save Path" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+    <VBox alignment="CENTER" prefHeight="82.0" prefWidth="300.0" spacing="10.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+      <children>
+        <Label id="labelFilePath" alignment="CENTER_LEFT" contentDisplay="LEFT" prefWidth="350.0" text="Path to save computed files:" textFill="BLACK">
+          <VBox.margin>
+            <Insets left="20.0" fx:id="x3" />
+          </VBox.margin>
+        </Label>
+      </children>
+    </VBox>
   </children>
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="250.0" prefWidth="250.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" prefWidth="150.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="180.0" prefWidth="180.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="170.0" prefWidth="170.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="74.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="82.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="27.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="82.0" minHeight="10.0" prefHeight="77.0" vgrow="SOMETIMES" />
   </rowConstraints>
   <stylesheets>
     <URL value="@application.css" />
